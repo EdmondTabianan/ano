@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="DSC_0618.JPG" alt="image" onclick="toggleAudio()">
+    <center>
+        <h1> Tap the image </h1>
+    </center>
+    <script>
+        let audio = new Audio('Unti unti - Up Dharma Down (Lyrics).mp3');
+        audio.loop = true;
+        audio.muted = true; // Start muted
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    audio.muted = false; // Unmute after playing
+                }).catch((error) => {
+                    console.error("Audio playback failed: ", error);
+                });
+            } else {
+                audio.pause();
+            }
+        }
+
+        // Attempt to start playing the audio on page load
+        window.onload = () => {
+            audio.play().then(() => {
+                audio.muted = false; // Unmute if it starts playing
+            }).catch((error) => {
+                console.error("Autoplay failed: ", error);
+            });
+        };
+    </script>
+</body>
+</html>
